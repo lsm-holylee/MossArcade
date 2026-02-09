@@ -1,111 +1,161 @@
-import React from 'react';
-import { Search, ThumbsUp, Flame, ChevronLeft, ChevronRight } from 'lucide-react';
-import { RECOMMENDED_GAMES, POPULAR_GAMES } from '../constants';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Swords, Car, Brain, Target, Gamepad2, Puzzle, Users, Zap, Trophy, Heart, Star, Flame } from 'lucide-react';
+import { ALL_GAMES } from '../constants';
 import GameCard from '../components/GameCard';
 
+// ---- Components ----
+const CategoryButton: React.FC<{ icon: React.ReactNode; label: string; color: string }> = ({ icon, label, color }) => (
+    <button className={`flex items-center gap-2 px-3 py-2 rounded-lg ${color} hover:brightness-110 transition-all text-white text-[11px] font-bold`}>
+        {icon}
+        <span>{label}</span>
+    </button>
+);
+
+// ---- Main Page ----
+
 const Home: React.FC = () => {
+    // Scroll ref for potential future features, currently just a container
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Filter games for different sections
+    // Mosaic: Use first 8 games
+    const mosaicGames = ALL_GAMES.slice(0, 8);
+
+    // Recommended: Use remaining 2 + mixture of others to fill row
+    // We have 10 games total. 
+    // Let's use 9 and 10 for "New" in recommended section, plus shuffle some others
+    const recommendedGames = [
+        ALL_GAMES[8], // 활
+        ALL_GAMES[9], // 탱크
+        ALL_GAMES[0], // 당구
+        ALL_GAMES[1], // 하키
+        ALL_GAMES[5], // 패널티킥
+        ALL_GAMES[6], // 포커
+    ].filter(Boolean); // Safety check
+
+    // Brand: Use a mix
+    const brandGames = [
+        ALL_GAMES[2], // 룰렛
+        ALL_GAMES[3], // 가위바위보
+        ALL_GAMES[4], // 체스
+        ALL_GAMES[7], // 네온
+        ALL_GAMES[8],
+        ALL_GAMES[9],
+    ].filter(Boolean);
+
+    // Recently Played (Just first 5 for demo)
+    const recentGames = ALL_GAMES.slice(0, 5);
+
+    const categories = [
+        { icon: <Swords size={14} />, label: '액션', color: 'bg-red-600' },
+        { icon: <Car size={14} />, label: '레이싱', color: 'bg-blue-600' },
+        { icon: <Brain size={14} />, label: '퍼즐', color: 'bg-purple-600' },
+        { icon: <Target size={14} />, label: '슈팅', color: 'bg-orange-600' },
+        { icon: <Gamepad2 size={14} />, label: '아케이드', color: 'bg-green-600' },
+        { icon: <Puzzle size={14} />, label: '보드', color: 'bg-yellow-600' },
+        { icon: <Users size={14} />, label: '멀티', color: 'bg-pink-600' },
+        { icon: <Zap size={14} />, label: '캐주얼', color: 'bg-cyan-600' },
+        { icon: <Trophy size={14} />, label: '스포츠', color: 'bg-emerald-600' },
+        { icon: <Heart size={14} />, label: '시뮬', color: 'bg-rose-600' },
+    ];
+
     return (
-        <div className="flex-1 bg-[#05070A] overflow-y-auto p-8 relative">
-            {/* Background radial glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-[#FFD70005] blur-[120px] pointer-events-none" />
-
-            {/* Search Section */}
-            <div className="relative max-w-2xl mx-auto mb-10 z-10">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#475569]">
-                    <Search size={20} />
+        <div
+            ref={scrollRef}
+            className="h-full bg-transparent overflow-y-auto px-6 py-6 pt-20 scrollbar-hide"
+        >
+            {/* 1. Continue Playing (Small Icons) */}
+            <section className="mb-8">
+                <div className="flex items-center gap-3 mb-3">
+                    <h2 className="text-sm font-bold text-gray-200">계속 플레이하기</h2>
+                    <button className="text-[10px] text-[#00ff99] hover:underline">모두 보기</button>
                 </div>
-                <input
-                    type="text"
-                    placeholder="Search games..."
-                    className="w-full bg-[#111622] border border-[#1E2330] rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-[#FFD70044] focus:ring-1 focus:ring-[#FFD70022] transition-all placeholder-[#475569]"
-                />
-            </div>
-
-            {/* Recommended Section */}
-            <section className="mb-12 relative z-10">
-                <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                        <ThumbsUp className="text-[#FFD700]" size={18} />
-                        <h2 className="text-lg font-bold">Recommended Games</h2>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <button className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] bg-[#111622] px-3 py-1.5 rounded-lg border border-[#1E2330] hover:text-[#FFD700] hover:border-[#FFD70044] transition-all mr-2">
-                            View All
-                        </button>
-                        <button className="p-1.5 rounded-full bg-[#111622] border border-[#1E2330] hover:bg-[#1E2330] transition-colors">
-                            <ChevronLeft size={16} className="text-[#94A3B8]" />
-                        </button>
-                        <button className="p-1.5 rounded-full bg-[#111622] border border-[#1E2330] hover:bg-[#1E2330] transition-colors">
-                            <ChevronRight size={16} className="text-[#94A3B8]" />
-                        </button>
-                    </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    {RECOMMENDED_GAMES.map((game) => (
-                        <GameCard key={game.id} game={game} />
+                <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2">
+                    {recentGames.map((game) => (
+                        <Link key={game.id} to={`/game/${game.id}`} className="group relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-white/10 hover:ring-[#00ff99] transition-all">
+                            <img src={game.icon} className="w-full h-full object-cover opacity-80 group-hover:opacity-100" />
+                        </Link>
                     ))}
                 </div>
             </section>
 
-            {/* Popular Section */}
-            <section className="relative z-10">
-                <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                        <Flame className="text-[#FFD700]" size={18} />
-                        <h2 className="text-lg font-bold">Popular Games</h2>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <button className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] bg-[#111622] px-3 py-1.5 rounded-lg border border-[#1E2330] hover:text-[#FFD700] hover:border-[#FFD70044] transition-all mr-2">
-                            View All
-                        </button>
-                        <button className="p-1.5 rounded-full bg-[#111622] border border-[#1E2330] hover:bg-[#1E2330] transition-colors">
-                            <ChevronLeft size={16} className="text-[#94A3B8]" />
-                        </button>
-                        <button className="p-1.5 rounded-full bg-[#111622] border border-[#1E2330] hover:bg-[#1E2330] transition-colors">
-                            <ChevronRight size={16} className="text-[#94A3B8]" />
-                        </button>
-                    </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    {POPULAR_GAMES.map((game) => (
-                        <GameCard key={game.id} game={game} />
+            {/* 2. Top Recommendations (Mosaic Grid 8-cols) */}
+            <section className="mb-10">
+                <h2 className="text-sm font-bold text-gray-200 mb-3">당신을 위한 최고의 추천</h2>
+                {/* 
+                    CrazyGames style mosaic layout often uses a specific grid structure.
+                    Here we use 8 columns.
+                    Row 1: [2x2] [1x1] [1x1] [2x2] [1x1] [1x1] -> This is 2+1+1+2+1+1 = 8 cols. Perfect.
+                    Row 2: Left 2x2 continues, [1x1] [1x1] filled below first row 1x1s, Right 2x2 continues, [1x1] [1x1] filled.
+                */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
+                    {mosaicGames.map((game, idx) => (
+                        <div key={`mosaic-${game.id}`} className="aspect-square relative group">
+                            <GameCard
+                                game={game}
+                                className="h-full"
+                                badge={
+                                    idx === 0 ? "Top" :
+                                        idx === 1 ? "Hot" :
+                                            idx === 3 ? "Popular" :
+                                                idx === 6 ? "Updated" : undefined
+                                }
+                                badgeColor={
+                                    idx === 0 ? "bg-yellow-400 text-black" :
+                                        idx === 1 ? "bg-orange-500 text-white" :
+                                            idx === 3 ? "bg-purple-500 text-white" :
+                                                idx === 6 ? "bg-blue-500 text-white" : undefined
+                                }
+                            />
+                        </div>
                     ))}
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="mt-20 py-10 border-t border-[#1E2330] flex flex-col md:flex-row items-center justify-between gap-6 opacity-60">
-                <p className="text-xs font-medium text-[#94A3B8]">© 2024 Moss Arcade. All rights reserved.</p>
-                <div className="flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
-                    <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" className="hover:text-white transition-colors">Support</a>
+            {/* 3. Recommended (Landscape Grid) */}
+            <section className="mb-10">
+                <h2 className="text-sm font-bold text-gray-200 mb-3">추천 게임</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                    {recommendedGames.map((game, idx) => (
+                        <div key={`rec-${game.id}-${idx}`} className="aspect-square">
+                            <GameCard game={game} className="h-full" badge={idx < 2 ? "New" : undefined} badgeColor="bg-green-500 text-white" />
+                        </div>
+                    ))}
                 </div>
-                <div className="flex items-center gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[#111622] border border-[#1E2330] flex items-center justify-center cursor-pointer hover:bg-[#1E2330]">
-                        <Facebook size={14} />
-                    </div>
-                    <div className="w-8 h-8 rounded-full bg-[#111622] border border-[#1E2330] flex items-center justify-center cursor-pointer hover:bg-[#1E2330]">
-                        <Twitter size={14} />
-                    </div>
-                    <div className="w-8 h-8 rounded-full bg-[#111622] border border-[#1E2330] flex items-center justify-center cursor-pointer hover:bg-[#1E2330]">
-                        <Youtube size={14} />
-                    </div>
+            </section>
+
+            {/* 4. Play on Brand (Portrait Grid) */}
+            <section className="mb-10">
+                <div className="flex items-center gap-2 mb-3">
+                    <h2 className="text-sm font-bold text-gray-200">브랜드에서 플레이</h2>
+                    <span className="text-[10px] text-gray-500">더 스마트한 AI 기반 플레이 및 검색 방식</span>
                 </div>
-            </footer>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                    {brandGames.map((game, idx) => (
+                        <div key={`brand-${game.id}-${idx}`} className="aspect-square">
+                            <GameCard
+                                game={game}
+                                className="h-full"
+                                badge="Play on 🎮"
+                                badgeColor="bg-white text-black"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* 5. Categories */}
+            <section className="mb-8">
+                <h2 className="text-sm font-bold text-gray-200 mb-3">📂 카테고리</h2>
+                <div className="flex flex-wrap gap-2">
+                    {categories.map((cat, idx) => (
+                        <CategoryButton key={idx} icon={cat.icon} label={cat.label} color={cat.color} />
+                    ))}
+                </div>
+            </section>
         </div>
     );
 };
-
-// Social Icons helper
-const Facebook = (props: any) => (
-    <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-);
-const Twitter = (props: any) => (
-    <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
-);
-const Youtube = (props: any) => (
-    <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg>
-);
 
 export default Home;

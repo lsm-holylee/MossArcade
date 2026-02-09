@@ -1,24 +1,32 @@
 import React from 'react';
-import { Gamepad2 } from 'lucide-react';
-import { RECOMMENDED_GAMES, POPULAR_GAMES } from '../constants';
+import { Zap } from 'lucide-react';
+import { ALL_GAMES } from '../constants';
 import GameCard from '../components/GameCard';
 
 const Arcade: React.FC = () => {
-    const allGames = [...RECOMMENDED_GAMES, ...POPULAR_GAMES];
+    // New Arrival Games (Simulated)
+    const newGames = [
+        ...ALL_GAMES.slice(5, 10),
+        ...ALL_GAMES.slice(0, 5),
+    ];
 
     return (
-        <div className="flex-1 bg-[#05070A] overflow-y-auto p-8 relative">
-            {/* Background radial glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-[#FFD70005] blur-[120px] pointer-events-none" />
-
-            <div className="flex items-center gap-2 mb-8 relative z-10">
-                <Gamepad2 className="text-[#FFD700]" size={24} />
-                <h1 className="text-2xl font-bold text-white">Arcade</h1>
+        <div className="h-full bg-transparent overflow-y-auto px-6 py-6 pt-20 scrollbar-hide">
+            <div className="flex items-center gap-2 mb-6">
+                <Zap className="text-[#00ff99]" size={20} />
+                <h1 className="text-lg font-bold text-gray-200">신규 도착 게임</h1>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 relative z-10">
-                {allGames.map((game) => (
-                    <GameCard key={game.id} game={game} />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
+                {newGames.map((game, idx) => (
+                    <div key={`${game.id}-${idx}`} className="aspect-square relative group">
+                        <GameCard
+                            game={game}
+                            className="h-full"
+                            badge={idx < 3 ? 'NEW' : undefined}
+                            badgeColor="bg-green-500 text-white"
+                        />
+                    </div>
                 ))}
             </div>
         </div>

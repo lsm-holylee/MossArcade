@@ -1,31 +1,125 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moss Arcade</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+KR:wght@300;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --neon-green: #00ff99;
+            --neon-purple: #9d50bb;
+            --bg-dark: #0a0a0c;
+            --sidebar-width: 240px;
+            --header-height: 64px;
+            --ease-anti: cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: var(--bg-dark);
+            color: #fff;
         }
-        ::-webkit-scrollbar {
-            width: 6px;
+
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* Header Styles */
+        .header {
+            height: var(--header-height);
+            background: rgba(13, 13, 18, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        ::-webkit-scrollbar-track {
-            background: #05070A;
+
+        .search-bar:focus-within {
+            border-color: var(--neon-green);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 10px;
+
+        .header-icon-btn:hover {
+            transform: translateY(-2px);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+
+        /* Sidebar Styles */
+        .sidebar-fixed {
+            width: var(--sidebar-width);
+            transition: transform 0.4s var(--ease-anti);
+        }
+
+        .sidebar-hidden .sidebar-fixed {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-hidden .main-container {
+            margin-left: 0 !important;
+        }
+
+        /* Game Card Styles */
+        .game-card {
+            transition: all 0.4s var(--ease-anti);
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(0, 255, 153, 0.3);
+            z-index: 10;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0c; }
+        ::-webkit-scrollbar-thumb { background: #2a2a2e; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3a3a3e; }
+
+        /* Notification dot */
+        .notification-dot {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 16px;
+            height: 16px;
+            background: #ef4444;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border: 2px solid #0d0d12;
+        }
+
+        /* Featured Grid */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .featured-large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        @media (max-width: 1024px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .featured-large {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-large {
+                grid-column: span 1;
+            }
         }
     </style>
 <script type="importmap">
@@ -40,7 +134,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-[#05070A] text-white">
+<body class="bg-[#0a0a0c] text-white">
     <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>
