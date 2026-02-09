@@ -13,7 +13,17 @@
 
 ---
 
-## ✅ v1.0 (Current Checkpoint)
+## ✅ v1.1 (Current Checkpoint)
+- **날짜**: 2026-02-09
+- **설명**: 인게임 UI 리팩토링 및 사이드바 통합
+    - GameRoom 페이지에 Sidebar 통합 (4단 레이아웃)
+    - BettingPanel 디자인 대폭 수정 (VS 레이아웃, 하단 READY 버튼)
+    - GameChat 디자인 수정 (하단 고정 입력창)
+- **Commit ID**: `f946a5a`
+
+---
+
+## ✅ v1.0
 - **날짜**: 2026-02-09
 - **설명**: 로비 리디자인 전체 완료
     - 모든 카드 정사각형 그리드 적용
