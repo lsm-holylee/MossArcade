@@ -4,6 +4,8 @@ import { Home, History, Zap, TrendingUp, Swords, Car, Brain, Target, Wallet } fr
 
 interface SidebarProps {
   isOpen: boolean;
+  className?: string;
+  onToggle?: () => void; // Optional for compatibility
 }
 
 const NAV_ITEMS = [
@@ -20,10 +22,10 @@ const CATEGORIES = [
   { id: 'shooting', label: '슈팅', icon: Target },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, className }) => {
   return (
     <aside
-      className="sidebar-fixed fixed left-0 top-16 h-[calc(100vh-64px)] bg-[#0d0d12] border-r border-white/5 flex flex-col z-40"
+      className={`sidebar-fixed fixed left-0 bg-[#0d0d12] border-r border-white/5 flex flex-col z-40 transition-transform duration-300 ${className || 'top-16 h-[calc(100vh-64px)]'}`}
       style={{ transform: isOpen ? 'translateX(0)' : 'translateX(-100%)' }}
     >
       {/* Main Navigation */}

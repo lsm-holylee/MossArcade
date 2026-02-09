@@ -12,7 +12,7 @@ import Friends from './lobby/pages/Friends';
 import Tournaments from './lobby/pages/Tournaments';
 
 // 게임 영역 (자유롭게 수정)
-import GameRouter from './games/GameRouter';
+import GameRoom from './game/pages/GameRoom';
 
 const App: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const App: React.FC = () => {
         </Route>
 
         {/* 게임 라우트 - 로비 레이아웃 없이 독립 실행 */}
-        <Route path="/game/:gameId" element={<GameRouter />} />
+        <Route path="/game/:gameId" element={<GameRoom />} />
       </Routes>
     </BrowserRouter>
   );
