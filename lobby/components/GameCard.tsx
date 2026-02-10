@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ThumbsUp, User } from 'lucide-react';
 import { Game } from '../types';
 
 interface GameCardProps {
@@ -14,42 +15,46 @@ const GameCard: React.FC<GameCardProps> = ({
   game,
   className = '',
   showTitle = true,
-  badge,
-  badgeColor
 }) => {
+  // Mock random stats for demo
+  const rating = (85 + Math.random() * 14).toFixed(0);
+  const ccu = (Math.random() * 50 + 1).toFixed(1) + 'k';
+
   return (
     <Link
       to={`/game/${game.id}`}
-      className={`group relative rounded-lg overflow-hidden bg-[#16161a] cursor-pointer block border border-white/[0.03] ${className}`}
+      className={`group flex flex-col gap-1.5 cursor-pointer ${className}`}
     >
-      {/* Badge */}
-      {badge && (
-        <span className={`absolute top-1.5 left-1.5 z-10 px-1.5 py-0.5 rounded text-[9px] font-bold shadow-md ${badgeColor || 'bg-gray-700 text-white'}`}>
-          {badge}
-        </span>
-      )}
-
-      {/* Image */}
-      <div className="w-full h-full relative overflow-hidden">
+      {/* Thumbnail Container 16:9 */}
+      <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-[#1e1e20] shadow-sm group-hover:shadow-md transition-all">
         <img
           src={game.icon}
           alt={game.title}
-          className="w-full h-full object-cover bg-[#1a1a20] opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
 
-      {/* Title Overlay */}
-      {showTitle && (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-          <div className="absolute bottom-0 left-0 right-0 p-2">
-            <h4 className="text-gray-200 font-bold text-[11px] truncate leading-tight drop-shadow-md group-hover:text-[#00ff99] transition-colors font-orbitron uppercase">
-              {game.title}
-            </h4>
+      {/* Game Info */}
+      <div className="px-1">
+        <h4 className="font-bold text-white text-[15px] leading-tight truncate group-hover:underline decoration-white/50">
+          {game.title}
+        </h4>
+
+        <div className="flex items-center gap-3 text-xs text-gray-400 mt-1">
+          <div className="flex items-center gap-1">
+            <ThumbsUp size={12} className="text-gray-400" />
+            <span>{rating}%</span>
           </div>
-        </>
-      )}
+          <div className="flex items-center gap-1">
+            <User size={12} className="text-gray-400" />
+            <span>{ccu}</span>
+          </div>
+        </div>
+      </div>
     </Link>
   );
 };

@@ -154,6 +154,7 @@ npm install
 
 # 3. 개발 서버 실행
 npm run dev
+# 접속 주소: http://localhost:3000 (또는 3001, 5173)
 ```
 
 ### 빌드

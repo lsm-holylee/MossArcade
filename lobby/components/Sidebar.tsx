@@ -1,95 +1,73 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, History, Zap, TrendingUp, Swords, Car, Brain, Target, Wallet } from 'lucide-react';
+import { Home, BarChart2, MessageSquare, Settings, Info, HelpCircle, LogOut } from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
   className?: string;
-  onToggle?: () => void; // Optional for compatibility
 }
 
 const NAV_ITEMS = [
-  { id: 'home', label: '홈', icon: Home },
-  { id: 'match-history', label: '최근 플레이한 게임', icon: History },
-  { id: 'arcade', label: '신규 게임', icon: Zap },
-  { id: 'leaderboard', label: '현재 인기있는 게임', icon: TrendingUp },
+  { id: '', label: '홈', icon: Home },
+  { id: 'leaderboard', label: '차트', icon: BarChart2 },
+  { id: 'messages', label: '메시지', icon: MessageSquare },
+  { id: 'settings', label: '설정', icon: Settings },
+  { id: 'about', label: '소개', icon: Info },
+  { id: 'help', label: '도움말 및 안전', icon: HelpCircle },
+  { id: 'logout', label: '로그아웃', icon: LogOut, isAction: true },
 ];
 
-const CATEGORIES = [
-  { id: 'action', label: '액션', icon: Swords },
-  { id: 'racing', label: '레이싱', icon: Car },
-  { id: 'puzzle', label: '퍼즐', icon: Brain },
-  { id: 'shooting', label: '슈팅', icon: Target },
-];
-
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, className }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   return (
     <aside
-      className={`sidebar-fixed fixed left-0 bg-[#0d0d12] border-r border-white/5 flex flex-col z-40 transition-transform duration-300 ${className || 'top-16 h-[calc(100vh-64px)]'}`}
-      style={{ transform: isOpen ? 'translateX(0)' : 'translateX(-100%)' }}
+      className={`
+                fixed top-14 left-0 h-[calc(100vh-56px)] bg-[#1a1a1c]
+                border-r border-white/5 z-40 overflow-y-auto custom-scrollbar
+                transition-all duration-300 ease-in-out
+                ${isOpen ? 'w-60' : 'w-0 md:w-[72px]'}
+            `}
     >
-      {/* Main Navigation */}
-      <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
+      <nav className="flex flex-col py-2 h-full">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
+          const isLogout = item.id === 'logout';
+
           return (
             <NavLink
               key={item.id}
-              to={`/${item.id}`}
+              to={isLogout ? '#' : `/${item.id}`}
               className={({ isActive }) => `
-                                flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group
-                                ${isActive
-                  ? 'bg-white/5 text-white'
-                  : 'text-gray-400 hover:bg-white/[0.03] hover:text-white'
+                                flex items-center h-12 px-6 my-0.5 text-white/70 
+                                transition-colors relative group
+                                ${isActive && !isLogout
+                  ? 'text-white font-bold before:absolute before:left-0 before:top-3 before:bottom-3 before:w-1 before:bg-white'
+                  : 'hover:bg-white/10 hover:text-white'
                 }
+                                ${isLogout ? 'mt-auto text-red-400 hover:text-red-300 hover:bg-red-500/10' : ''}
                             `}
-            >
-              {({ isActive }) => (
-                <>
-                  <Icon size={20} className={isActive ? 'text-[#00ff99]' : 'group-hover:text-[#00ff99]'} />
-                  <span className="font-medium text-sm">{item.label}</span>
-                </>
-              )}
-            </NavLink>
-          );
-        })}
-
-        {/* Category Section */}
-        <div className="pt-6 pb-2 px-4">
-          <span className="text-[11px] text-gray-500 uppercase font-bold tracking-widest">
-            장르별 카테고리
-          </span>
-        </div>
-
-        {CATEGORIES.map((item) => {
-          const Icon = item.icon;
-          return (
-            <NavLink
-              key={item.id}
-              to={`/category/${item.id}`}
-              className={({ isActive }) => `
-                                flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group
-                                ${isActive
-                  ? 'bg-white/5 text-white'
-                  : 'text-gray-400 hover:bg-white/[0.03] hover:text-white'
+              onClick={(e) => {
+                if (isLogout) {
+                  e.preventDefault();
+                  // Handle logout logic here if needed
+                  console.log('Logout clicked');
                 }
-                            `}
+              }}
             >
-              <Icon size={20} className="group-hover:text-[#00ff99]" />
-              <span className="font-medium text-sm">{item.label}</span>
+              <div className="flex items-center justify-center w-6 h-6 min-w-[24px]">
+                <Icon size={22} strokeWidth={2.5} />
+              </div>
+              <span
+                className={`
+                                    ml-4 text-[15px] whitespace-nowrap transition-opacity duration-200
+                                    ${isOpen ? 'opacity-100' : 'opacity-0 md:hidden'}
+                                `}
+              >
+                {item.label}
+              </span>
             </NavLink>
           );
         })}
       </nav>
-
-      {/* Wallet Section */}
-      <div className="px-4 py-6 border-t border-white/5 mx-2">
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
-          <span>WALLET</span>
-          <Wallet size={12} />
-        </div>
-        <span className="font-orbitron font-bold text-lg text-[#00ff99]">0 MOC</span>
-      </div>
     </aside>
   );
 };

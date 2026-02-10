@@ -215,8 +215,13 @@ const NeonGame: React.FC = () => {
         const game = gameRef.current;
 
         const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if (canvasRef.current && canvasRef.current.parentElement) {
+                canvas.width = canvasRef.current.parentElement.clientWidth;
+                canvas.height = canvasRef.current.parentElement.clientHeight;
+            } else {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
             game.centerX = canvas.width / 2;
             game.centerY = canvas.height / 2;
             if (gameState === 'START') {
@@ -352,13 +357,14 @@ const NeonGame: React.FC = () => {
     return (
         <div style={{
             position: 'relative',
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%',
             overflow: 'hidden',
             backgroundColor: '#050505',
             fontFamily: "'Noto Sans KR', sans-serif",
         }}>
             {/* Back Button */}
+            {/* Back Button - Removed as we have Sidebar now
             <button
                 onClick={() => navigate('/arcade')}
                 style={{
@@ -378,6 +384,7 @@ const NeonGame: React.FC = () => {
             >
                 ← 로비
             </button>
+            */}
 
             {/* HUD */}
             {gameState !== 'START' && (

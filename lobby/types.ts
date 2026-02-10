@@ -4,7 +4,7 @@ export interface Game {
   title: string;
   players: number;
   icon: string;
-  category: 'recommended' | 'popular';
+  category: 'recommended' | 'popular' | 'action' | 'sports' | 'puzzle' | 'shooting' | 'arcade' | 'board' | 'multi' | 'casual' | 'simulation';
 }
 
 export interface ChatMessage {
