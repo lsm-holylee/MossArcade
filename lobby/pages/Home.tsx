@@ -1,31 +1,25 @@
-import React from 'react';
-import { ALL_GAMES } from '../constants';
-import GameCarousel from '../components/GameCarousel';
+import React, { useMemo } from 'react';
+import { ALL_CARDS } from '../constants';
+import MasonryCard from '../components/MasonryCard';
+import { AnyCard } from '../types';
 
+// ===== Poki 스타일 Masonry Grid 홈 화면 =====
+// 기획서 5.1: 카로셀 없이 다양한 크기의 카드를 타일처럼 빈틈없이 배치
 const Home: React.FC = () => {
-    // Organize games into categories for demo
-    const continuePlaying = ALL_GAMES.slice(0, 4);
-    const recommended = [ALL_GAMES[8], ALL_GAMES[9], ALL_GAMES[0], ALL_GAMES[1], ALL_GAMES[5], ALL_GAMES[6]];
-    const trending = [ALL_GAMES[2], ALL_GAMES[4], ALL_GAMES[7], ALL_GAMES[3], ALL_GAMES[8], ALL_GAMES[0]];
-    const topRated = [ALL_GAMES[7], ALL_GAMES[5], ALL_GAMES[1], ALL_GAMES[9], ALL_GAMES[2], ALL_GAMES[4]];
-    const fighting = ALL_GAMES.filter(g => g.category === 'action' || g.category === 'sports');
+    // 카드 정렬: 이벤트(핀) → 공지(핀) → 최근 플레이 → 추천 → 인기 → 상점 → 랭킹 → 소셜
+    const sortedCards = useMemo(() => {
+        const pinned = ALL_CARDS.filter(c => c.pinned);
+        const unpinned = ALL_CARDS.filter(c => !c.pinned);
+        return [...pinned, ...unpinned];
+    }, []);
 
     return (
-        <div className="pb-10 max-w-[1600px] mx-auto text-white">
-            {/* 1. Continue Playing */}
-            <GameCarousel title="Continue Playing" games={continuePlaying} />
-
-            {/* 2. Recommended */}
-            <GameCarousel title="Recommended for You" games={recommended} />
-
-            {/* 3. Trending */}
-            <GameCarousel title="Trending Now" games={trending} />
-
-            {/* 4. Top Rated */}
-            <GameCarousel title="Top Rated" games={topRated} />
-
-            {/* 5. Specific Genre */}
-            <GameCarousel title="Action & Sports" games={fighting} />
+        <div className="masonry-home">
+            <div className="masonry-grid">
+                {sortedCards.map((card: AnyCard) => (
+                    <MasonryCard key={card.id} card={card} />
+                ))}
+            </div>
         </div>
     );
 };
