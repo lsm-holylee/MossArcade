@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -7,6 +6,7 @@ import Layout from './lobby/components/Layout';
 import Home from './lobby/pages/Home';
 import Wallet from './lobby/pages/Wallet';
 import Marketplace from './lobby/pages/Marketplace';
+import Events from './lobby/pages/Events';
 import MatchHistory from './lobby/pages/MatchHistory';
 import Leaderboard from './lobby/pages/Leaderboard';
 import Friends from './lobby/pages/Friends';
@@ -30,8 +30,9 @@ const App: React.FC = () => {
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="home" element={<Home />} />
             <Route path="wallet" element={<Wallet />} />
-            <Route path="marketplace" element={<Marketplace />} />
-            <Route path="match-history" element={<MatchHistory />} />
+            {/* <Route path="marketplace" element={<Marketplace />} /> */}
+            <Route path="events" element={<Events />} />
+            {/* <Route path="match-history" element={<MatchHistory />} /> */}
             <Route path="leaderboard" element={<Leaderboard />} />
             <Route path="friends" element={<Friends />} />
             <Route path="tournaments" element={<Tournaments />} />

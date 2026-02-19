@@ -43,6 +43,13 @@ body {
   font-family: 'DungGeunMo', 'Inter', 'Noto Sans KR', sans-serif;
 }
 
+/* ===== 전역 아이콘 스타일: 얇은 라인 아이콘 통일 ===== */
+/* lucide-react SVG 아이콘을 1.5 stroke-width로 통일 (예시 이미지 스타일) */
+.lucide,
+svg[class*="lucide"] {
+  stroke-width: 1.5 !important;
+}
+
 /* ===== 통일 버튼 시스템 ===== */
 
 /* TopBar 아이콘 버튼 (알림, 설정 등) */
@@ -348,11 +355,11 @@ body {
 }
 
 .card-ccu {
-  color: var(--accent-secondary);
+  /* color: var(--accent-secondary); */
 }
 
 .card-like {
-  color: var(--accent-primary);
+  /* color: var(--accent-primary); */
 }
 
 /* ===== 공지 카드 ===== */

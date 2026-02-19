@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Users, ThumbsUp } from 'lucide-react';
 import {
     AnyCard, GameCard, NoticeCard, EventCard,
     ShopCard, RankingCard, SocialCard
@@ -46,13 +47,35 @@ const MasonryCard: React.FC<MasonryCardProps> = ({ card }) => {
 
     const badge = TYPE_BADGES[card.type];
 
-    // 카드 클릭 핸들러
+    // 카드 클릭 핸들러 — 카드 타입별 적절한 페이지로 이동
     const handleClick = () => {
-        if (card.type === 'game') {
-            const gameId = card.id.replace('game-', '');
-            navigate(`/game/${gameId}`);
+        switch (card.type) {
+            case 'game': {
+                const gameId = card.id.replace('game-', '');
+                navigate(`/game/${gameId}`);
+                break;
+            }
+            case 'notice':
+                // 공지 카드 → 공지 내용을 알림으로 표시
+                alert(`📢 ${card.title}\n\n${(card as any).summary || ''}`);
+                break;
+            case 'event':
+                // 이벤트 카드 → 이벤트 페이지로 이동
+                navigate('/events');
+                break;
+            case 'shop':
+                // 상점 카드 → 마켓플레이스로 이동
+                navigate('/marketplace');
+                break;
+            case 'ranking':
+                // 랭킹 카드 → 리더보드로 이동
+                navigate('/leaderboard');
+                break;
+            case 'social':
+                // 소셜 카드 → 친구 페이지로 이동
+                navigate('/friends');
+                break;
         }
-        // TODO: 다른 카드 타입별 네비게이션 처리
     };
 
     return (
@@ -69,10 +92,12 @@ const MasonryCard: React.FC<MasonryCardProps> = ({ card }) => {
                 borderColor: isHovered ? badge.color : 'rgba(255,255,255,0.08)',
             }}
         >
-            {/* 유형 태그 뱃지 */}
-            <div className="card-badge" style={{ color: badge.color, background: badge.bg }}>
-                {badge.label}
-            </div>
+            {/* 유형 태그 뱃지 (게임은 표시 안 함) */}
+            {card.type !== 'game' && (
+                <div className="card-badge" style={{ color: badge.color, background: badge.bg }}>
+                    {badge.label}
+                </div>
+            )}
 
             {/* 핀 표시 */}
             {card.pinned && <div className="card-pin">📌</div>}
@@ -102,8 +127,12 @@ const GameContent: React.FC<{ card: GameCard; isHovered: boolean }> = ({ card, i
         <div className="card-info">
             <h3 className="card-title">{card.title}</h3>
             <div className="card-meta">
-                <span className="card-ccu">👥 {card.players}</span>
-                <span className="card-like">👍 {card.likeRatio}%</span>
+                <span className="card-ccu flex items-center gap-1">
+                    <Users size={12} /> {card.players}
+                </span>
+                <span className="card-like flex items-center gap-1">
+                    <ThumbsUp size={12} /> {card.likeRatio}%
+                </span>
             </div>
         </div>
     </div>

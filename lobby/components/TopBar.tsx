@@ -12,6 +12,15 @@ const TopBar: React.FC<TopBarProps> = ({ onToggleSidebar }) => {
     const { mossCoin } = useEconomy();
     const navigate = useNavigate();
     const [activePopup, setActivePopup] = useState<'notifications' | 'profile' | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // 검색 제출 — Enter 키 시 피드백
+    const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && searchQuery.trim()) {
+            alert(`"${searchQuery}" 검색 결과: 검색 기능은 준비 중입니다. 🔍`);
+            setSearchQuery('');
+        }
+    };
 
     const togglePopup = (popup: 'notifications' | 'profile') => {
         setActivePopup(prev => prev === popup ? null : popup);
@@ -59,6 +68,9 @@ const TopBar: React.FC<TopBarProps> = ({ onToggleSidebar }) => {
                         <input
                             type="text"
                             placeholder="게임 검색..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={handleSearch}
                             className="w-full bg-[#2a2a2c] text-white border border-white/5 rounded-lg py-2 pl-10 pr-4 text-sm focus:border-[#FF8C00]/50 focus:outline-none placeholder-gray-500 transition-colors"
                         />
                     </div>

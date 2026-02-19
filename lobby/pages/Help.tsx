@@ -46,11 +46,11 @@ const HelpPage: React.FC = () => {
                 <div className="s-section-body">
                     <p className="s-desc">추가 문의 사항이 있으시면 아래 방법으로 연락해주세요.</p>
                     <div className="s-actions">
-                        <button className="btn-primary">
+                        <button className="btn-primary" onClick={() => window.open('mailto:support@mossarcade.com', '_blank')}>
                             <Mail size={14} />
                             이메일
                         </button>
-                        <button className="btn-outline">
+                        <button className="btn-outline" onClick={() => window.open('https://discord.gg/mossarcade', '_blank')}>
                             <MessageCircle size={14} />
                             Discord
                         </button>

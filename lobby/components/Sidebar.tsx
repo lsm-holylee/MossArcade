@@ -1,24 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Home, Wallet, ShoppingBag, LayoutGrid,
-  Users, Trophy, History, Settings, LogOut, HelpCircle
+  Users, Trophy, History, Settings, LogOut, HelpCircle, CalendarDays
 } from 'lucide-react';
+import { useEconomy } from '../context/EconomyContext';
 
 interface SidebarProps {
   isOpen: boolean;
   className?: string;
 }
 
-// 기획서 5.1 사이드바 메뉴: Home, Wallet, Marketplace, Leaderboard, Friends, Tournaments, Match History
+// 기획서 5.1 사이드바 메뉴
 const NAV_ITEMS = [
   { id: '', label: '홈', icon: Home },
   { id: 'wallet', label: '지갑', icon: Wallet },
-  { id: 'marketplace', label: '마켓', icon: ShoppingBag },
+  // { id: 'marketplace', label: '마켓', icon: ShoppingBag }, // 마켓 제거 요청됨
+  { id: 'events', label: '이벤트', icon: CalendarDays },
   { id: 'leaderboard', label: '리더보드', icon: LayoutGrid },
   { id: 'friends', label: '친구', icon: Users },
   { id: 'tournaments', label: '토너먼트', icon: Trophy },
-  { id: 'match-history', label: '전적', icon: History },
+  // { id: 'match-history', label: '전적', icon: History }, // 전적 제거 요청됨
   // 하단 메뉴
   { id: 'settings', label: '설정', icon: Settings, isBottom: true },
   { id: 'help', label: '도움말', icon: HelpCircle, isBottom: true },
@@ -26,6 +28,8 @@ const NAV_ITEMS = [
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
+  const navigate = useNavigate();
+  const { logout } = useEconomy();
   const topItems = NAV_ITEMS.filter(i => !i.isBottom && !i.isAction);
   const bottomItems = NAV_ITEMS.filter(i => i.isBottom || i.isAction);
 
@@ -56,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
               `}
             >
               <div className="flex items-center justify-center w-6 h-6 min-w-[24px]">
-                <Icon size={22} strokeWidth={2.5} />
+                <Icon size={22} />
               </div>
               <span
                 className={`
@@ -87,12 +91,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                 onClick={(e) => {
                   if (isLogout) {
                     e.preventDefault();
-                    console.log('Logout clicked');
+                    // 로그아웃 확인 후 상태 초기화 + 홈으로 이동
+                    if (window.confirm('정말 로그아웃 하시겠습니까?')) {
+                      logout();
+                      navigate('/');
+                    }
                   }
                 }}
               >
                 <div className="flex items-center justify-center w-6 h-6 min-w-[24px]">
-                  <Icon size={22} strokeWidth={2.5} />
+                  <Icon size={22} />
                 </div>
                 <span
                   className={`

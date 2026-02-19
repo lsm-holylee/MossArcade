@@ -40,7 +40,10 @@ const Tournaments: React.FC = () => {
                                 </div>
                             </div>
 
-                            <button className="bg-[#FFD700] text-[#05070A] px-6 py-3 rounded-xl font-bold hover:bg-[#EAB308] hover:scale-105 transition-all shadow-lg shadow-[#FFD70022]">
+                            <button
+                                onClick={() => alert('🏆 GOLDEN CUE CHAMPIONSHIP 참가 신청이 완료되었습니다! (Mock)')}
+                                className="bg-[#FFD700] text-[#05070A] px-6 py-3 rounded-xl font-bold hover:bg-[#EAB308] hover:scale-105 transition-all shadow-lg shadow-[#FFD70022]"
+                            >
                                 Register Now
                             </button>
                         </div>
@@ -77,7 +80,10 @@ const Tournaments: React.FC = () => {
                         </div>
                     </div>
 
-                    <button className="w-full py-2.5 rounded-lg bg-[#1E2330] text-[#94A3B8] font-bold text-sm hover:bg-[#FFD700] hover:text-[#05070A] transition-all">
+                    <button
+                        onClick={() => alert('🃏 Weekly Poker Night 로비에 참가했습니다! (Mock)')}
+                        className="w-full py-2.5 rounded-lg bg-[#1E2330] text-[#94A3B8] font-bold text-sm hover:bg-[#FFD700] hover:text-[#05070A] transition-all"
+                    >
                         Join Lobby
                     </button>
                 </div>
@@ -105,7 +111,10 @@ const Tournaments: React.FC = () => {
                         </div>
                     </div>
 
-                    <button className="w-full py-2.5 rounded-lg bg-[#1E2330] text-[#94A3B8] font-bold text-sm hover:bg-[#FFD700] hover:text-[#05070A] transition-all">
+                    <button
+                        onClick={() => alert('🚀 Cosmic Race 로비에 참가했습니다! (Mock)')}
+                        className="w-full py-2.5 rounded-lg bg-[#1E2330] text-[#94A3B8] font-bold text-sm hover:bg-[#FFD700] hover:text-[#05070A] transition-all"
+                    >
                         Join Lobby
                     </button>
                 </div>

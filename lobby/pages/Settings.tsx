@@ -5,7 +5,7 @@ import { User, Wallet, Bell, Shield, HelpCircle, LogOut } from 'lucide-react';
 
 // ===== 설정 페이지 — 프리미엄 디자인 =====
 const SettingsPage: React.FC = () => {
-    const { user, isGuest, connectWallet } = useEconomy();
+    const { user, isGuest, connectWallet, logout } = useEconomy();
     const navigate = useNavigate();
     const [notifGame, setNotifGame] = useState(true);
     const [notifEvent, setNotifEvent] = useState(true);
@@ -127,7 +127,12 @@ const SettingsPage: React.FC = () => {
                             <HelpCircle size={14} />
                             도움말
                         </button>
-                        <button className="btn-danger">
+                        <button className="btn-danger" onClick={() => {
+                            if (window.confirm('정말 로그아웃 하시겠습니까?')) {
+                                logout();
+                                navigate('/');
+                            }
+                        }}>
                             <LogOut size={14} />
                             로그아웃
                         </button>

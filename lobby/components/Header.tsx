@@ -9,6 +9,15 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Default true for demo
   const [activePopup, setActivePopup] = useState<'friends' | 'notifications' | 'mygames' | 'profile' | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // 검색 제출
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      alert(`"${searchQuery}" 검색 결과: 검색 기능은 준비 중입니다. 🔍`);
+      setSearchQuery('');
+    }
+  };
 
   const togglePopup = (popup: 'friends' | 'notifications' | 'mygames' | 'profile') => {
     setActivePopup(prev => prev === popup ? null : popup);
@@ -43,6 +52,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
             <input
               type="text"
               placeholder="게임 및 카테고리 검색"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
               className="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-600"
             />
           </div>

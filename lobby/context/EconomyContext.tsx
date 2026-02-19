@@ -24,6 +24,9 @@ interface EconomyContextType {
     addCoin: (amount: number) => void;
     spendCoin: (amount: number) => boolean;
 
+    // 로그아웃 (상태 초기화 + localStorage 클리어)
+    logout: () => void;
+
     // 지갑 연결 (게스트 → MetaMask 전환)
     connectWallet: (address: string) => void;
 
@@ -219,6 +222,29 @@ export const EconomyProvider: React.FC<{ children: React.ReactNode }> = ({ child
         return { success: true, message: `${FAUCET_AMOUNT.toLocaleString()} MMOC가 충전되었습니다! (${faucetCount + 1}/${FAUCET_DAILY_LIMIT}회)` };
     }, [user.mmocBalance, faucetCount, addTransaction]);
 
+    // ===== 로그아웃 (상태 초기화) =====
+    const logout = useCallback(() => {
+        // 유저 상태를 기본값으로 리셋
+        setUser({
+            uuid: crypto.randomUUID?.() || 'guest-' + Date.now(),
+            walletAddress: null,
+            nickname: 'Guest',
+            avatarUrl: '',
+            mmocBalance: 0,
+            cumulativeBet: 0,
+            rankTier: 'beginner' as RankTier,
+            totalWins: 0,
+            totalGames: 0,
+            isGuest: true,
+        });
+        setFaucetCount(0);
+        setTransactions([]);
+        // localStorage 클리어
+        localStorage.removeItem('moss_arcade_user');
+        localStorage.removeItem('moss_arcade_faucet');
+        localStorage.removeItem('moss_arcade_transactions');
+    }, []);
+
     // ===== 지갑 연결 (게스트 → MetaMask 업그레이드) =====
     const connectWallet = useCallback((address: string) => {
         setUser(prev => ({
@@ -233,6 +259,7 @@ export const EconomyProvider: React.FC<{ children: React.ReactNode }> = ({ child
             user,
             isGuest: user.isGuest,
             mmocBalance: user.mmocBalance,
+            logout,
             deposit,
             withdraw,
             faucet,
