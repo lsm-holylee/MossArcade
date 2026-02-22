@@ -13,7 +13,7 @@
   }
 }
 
-/* ===== 로컬 폰트 등록 ===== */
+/* ===== 로컬 ?�트 ?�록 ===== */
 @font-face {
   font-family: 'DungGeunMo';
   src: url('/font/DungGeunMo.ttf') format('truetype');
@@ -23,14 +23,18 @@
 }
 
 :root {
-  --accent-primary: #FF8C00;
-  /* 오렌지 */
-  --accent-secondary: #4A9EFF;
+  --accent-primary: #888888;
+  /* ?�렌지 */
+  --accent-secondary: #777777;
   /* 블루 */
-  --accent-danger: #FF6B6B;
-  /* 소프트 레드 */
-  --accent-warn: #FFD700;
+  --accent-danger: #666666;
+  /* ?�프???�드 */
+  --accent-warn: #aaaaaa;
   /* 골드 */
+  --neon-green: #999;
+  --neon-pink: #7a7a7a;
+  --neon-purple: #828282;
+  --neon-yellow: #bbbbbb;
   --bg-dark: #0a0a0c;
   --bg-card: #14141a;
   --bg-card-hover: #1a1a24;
@@ -43,16 +47,16 @@ body {
   font-family: 'DungGeunMo', 'Inter', 'Noto Sans KR', sans-serif;
 }
 
-/* ===== 전역 아이콘 스타일: 얇은 라인 아이콘 통일 ===== */
-/* lucide-react SVG 아이콘을 1.5 stroke-width로 통일 (예시 이미지 스타일) */
+/* ===== ?�역 ?�이�??��??? ?��? ?�인 ?�이�??�일 ===== */
+/* lucide-react SVG ?�이콘을 1.5 stroke-width�??�일 (?�시 ?��?지 ?��??? */
 .lucide,
 svg[class*="lucide"] {
   stroke-width: 1.5 !important;
 }
 
-/* ===== 통일 버튼 시스템 ===== */
+/* ===== ?�일 버튼 ?�스??===== */
 
-/* TopBar 아이콘 버튼 (알림, 설정 등) */
+/* TopBar ?�이�?버튼 (?�림, ?�정 ?? */
 .topbar-icon-btn {
   position: relative;
   display: flex;
@@ -74,18 +78,18 @@ svg[class*="lucide"] {
 }
 
 .topbar-icon-btn.active {
-  background: rgba(255, 140, 0, 0.15);
+  background: rgba(136, 136, 136, 0.15);
   color: var(--accent-primary);
 }
 
-/* 알림 빨간 점 */
+/* ?�림 빨간 ??*/
 .notif-dot {
   position: absolute;
   top: 6px;
   right: 6px;
   width: 7px;
   height: 7px;
-  background: #ff3b3b;
+  background: #666;
   border-radius: 50%;
   border: 1.5px solid #1a1a1c;
 }
@@ -118,7 +122,7 @@ svg[class*="lucide"] {
   justify-content: center;
   width: 18px;
   height: 18px;
-  background: #ffcc00;
+  background: #aaa;
   color: #000;
   border-radius: 4px;
   font-size: 10px;
@@ -129,7 +133,7 @@ svg[class*="lucide"] {
   color: var(--accent-warn);
 }
 
-/* TopBar 프로필 버튼 */
+/* TopBar ?�로??버튼 */
 .topbar-profile-btn {
   display: flex;
   align-items: center;
@@ -146,10 +150,10 @@ svg[class*="lucide"] {
 }
 
 .topbar-profile-btn.active {
-  background: rgba(255, 140, 0, 0.15);
+  background: rgba(136, 136, 136, 0.15);
 }
 
-/* 범용 버튼: Primary (네온 그린) */
+/* 범용 버튼: Primary (?�온 그린) */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -216,10 +220,10 @@ svg[class*="lucide"] {
 }
 
 .btn-danger:hover {
-  background: rgba(255, 107, 107, 0.1);
+  background: rgba(102, 102, 102, 0.1);
 }
 
-/* ===== Poki 스타일 Masonry Grid (기획서 5.1) ===== */
+/* ===== Poki ?��???Masonry Grid (기획??5.1) ===== */
 .masonry-home {
   padding: 16px;
   max-width: 1600px;
@@ -234,7 +238,7 @@ svg[class*="lucide"] {
   grid-auto-flow: dense;
 }
 
-/* 카드 크기: Large(4×4), Medium(3×3), Small(2×2) — 모두 정사각형, 최대=구 2×2 크기 */
+/* 카드 ?�기: Large(4×4), Medium(3×3), Small(2×2) ??모두 ?�사각형, 최�?=�?2×2 ?�기 */
 .masonry-large {
   grid-column: span 4;
   grid-row: span 4;
@@ -250,7 +254,7 @@ svg[class*="lucide"] {
   grid-row: span 2;
 }
 
-/* ===== 카드 공통 스타일 ===== */
+/* ===== 카드 공통 ?��???===== */
 .masonry-card {
   position: relative;
   background: var(--bg-card);
@@ -261,7 +265,7 @@ svg[class*="lucide"] {
   transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* 유형 태그 뱃지 */
+/* ?�형 ?�그 뱃�? */
 .card-badge {
   position: absolute;
   top: 8px;
@@ -274,7 +278,7 @@ svg[class*="lucide"] {
   backdrop-filter: blur(4px);
 }
 
-/* 핀 표시 */
+/* ?� ?�시 */
 .card-pin {
   position: absolute;
   top: 8px;
@@ -329,7 +333,7 @@ svg[class*="lucide"] {
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 0 16px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 0 16px rgba(136, 136, 136, 0.4);
 }
 
 .card-info {
@@ -362,7 +366,7 @@ svg[class*="lucide"] {
   /* color: var(--accent-primary); */
 }
 
-/* ===== 공지 카드 ===== */
+/* ===== 공�? 카드 ===== */
 .card-notice {
   height: 100%;
   padding: 16px;
@@ -392,7 +396,7 @@ svg[class*="lucide"] {
   margin-top: auto;
 }
 
-/* ===== 이벤트 카드 ===== */
+/* ===== ?�벤??카드 ===== */
 .card-event {
   height: 100%;
   display: flex;
@@ -404,7 +408,7 @@ svg[class*="lucide"] {
   bottom: 8px;
   right: 8px;
   padding: 4px 10px;
-  background: rgba(255, 107, 107, 0.85);
+  background: rgba(102, 102, 102, 0.85);
   color: white;
   font-size: 11px;
   font-weight: 600;
@@ -422,14 +426,14 @@ svg[class*="lucide"] {
   display: inline-block;
   margin-top: 4px;
   padding: 2px 8px;
-  background: rgba(255, 215, 0, 0.15);
+  background: rgba(170, 170, 170, 0.15);
   color: var(--accent-warn);
   font-size: 11px;
   font-weight: 600;
   border-radius: 4px;
 }
 
-/* ===== 상점 카드 ===== */
+/* ===== ?�점 카드 ===== */
 .card-shop {
   height: 100%;
   display: flex;
@@ -480,7 +484,7 @@ svg[class*="lucide"] {
   text-decoration: line-through;
 }
 
-/* ===== 랭킹 카드 ===== */
+/* ===== ??�� 카드 ===== */
 .card-ranking {
   height: 100%;
   padding: 14px;
@@ -512,7 +516,7 @@ svg[class*="lucide"] {
   font-size: 11px;
 }
 
-/* ===== 소셜 카드 ===== */
+/* ===== ?�셜 카드 ===== */
 .card-social {
   height: 100%;
   padding: 14px;
@@ -550,7 +554,7 @@ svg[class*="lucide"] {
   font-size: 10px;
 }
 
-/* ===== Wallet 페이지 — 프리미엄 디자인 ===== */
+/* ===== Wallet ?�이지 ???�리미엄 ?�자??===== */
 .w-page {
   max-width: 640px;
   margin: 0 auto;
@@ -560,7 +564,7 @@ svg[class*="lucide"] {
   gap: 16px;
 }
 
-/* 토스트 */
+/* ?�스??*/
 .w-toast {
   position: fixed;
   top: 68px;
@@ -577,13 +581,13 @@ svg[class*="lucide"] {
 .w-toast.success {
   background: var(--accent-primary);
   color: #fff;
-  box-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
+  box-shadow: 0 0 20px rgba(136, 136, 136, 0.3);
 }
 
 .w-toast.error {
   background: var(--accent-danger);
   color: #fff;
-  box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 0 20px rgba(102, 102, 102, 0.3);
 }
 
 @keyframes slideDown {
@@ -598,14 +602,14 @@ svg[class*="lucide"] {
   }
 }
 
-/* 히어로 잔고 카드 */
+/* ?�어�??�고 카드 */
 .w-hero {
   position: relative;
   border-radius: 16px;
   padding: 32px 24px;
   text-align: center;
   overflow: hidden;
-  border: 1px solid rgba(255, 140, 0, 0.15);
+  border: 1px solid rgba(136, 136, 136, 0.15);
 }
 
 .w-hero-bg {
@@ -622,7 +626,7 @@ svg[class*="lucide"] {
   right: -30%;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(136, 136, 136, 0.08) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -643,7 +647,7 @@ svg[class*="lucide"] {
   font-weight: 800;
   color: var(--accent-primary);
   margin: 8px 0;
-  text-shadow: 0 0 30px rgba(255, 140, 0, 0.3);
+  text-shadow: 0 0 30px rgba(136, 136, 136, 0.3);
 }
 
 .w-hero-rank {
@@ -660,9 +664,9 @@ svg[class*="lucide"] {
   align-items: center;
   gap: 4px;
   padding: 6px 12px;
-  border: 1px solid rgba(74, 158, 255, 0.3);
+  border: 1px solid rgba(119, 119, 119, 0.3);
   border-radius: 6px;
-  background: rgba(74, 158, 255, 0.08);
+  background: rgba(119, 119, 119, 0.08);
   color: var(--accent-secondary);
   font-size: 11px;
   font-weight: 600;
@@ -671,12 +675,12 @@ svg[class*="lucide"] {
 }
 
 .w-faucet-btn:hover {
-  background: rgba(74, 158, 255, 0.15);
+  background: rgba(119, 119, 119, 0.15);
   border-color: var(--accent-secondary);
-  box-shadow: 0 0 12px rgba(74, 158, 255, 0.2);
+  box-shadow: 0 0 12px rgba(119, 119, 119, 0.2);
 }
 
-/* 카드 컨테이너 */
+/* 카드 컨테?�너 */
 .w-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -684,7 +688,7 @@ svg[class*="lucide"] {
   overflow: hidden;
 }
 
-/* 탭 */
+/* ??*/
 .w-tabs {
   display: flex;
   border-bottom: 1px solid var(--border-subtle);
@@ -715,7 +719,7 @@ svg[class*="lucide"] {
 .w-tab.active {
   color: var(--accent-primary);
   border-bottom-color: var(--accent-primary);
-  background: rgba(255, 140, 0, 0.03);
+  background: rgba(136, 136, 136, 0.03);
 }
 
 .w-body {
@@ -727,12 +731,12 @@ svg[class*="lucide"] {
   color: var(--accent-danger);
   margin: 0 0 12px 0;
   padding: 6px 10px;
-  background: rgba(255, 107, 107, 0.06);
+  background: rgba(102, 102, 102, 0.06);
   border-radius: 6px;
-  border: 1px solid rgba(255, 107, 107, 0.15);
+  border: 1px solid rgba(102, 102, 102, 0.15);
 }
 
-/* 입력 + 버튼 행 */
+/* ?�력 + 버튼 ??*/
 .w-input-row {
   display: flex;
   gap: 8px;
@@ -753,7 +757,7 @@ svg[class*="lucide"] {
 
 .w-input:focus {
   border-color: var(--accent-primary);
-  background: rgba(255, 140, 0, 0.03);
+  background: rgba(136, 136, 136, 0.03);
 }
 
 .w-input::placeholder {
@@ -775,7 +779,7 @@ svg[class*="lucide"] {
 }
 
 .w-submit-btn:hover {
-  box-shadow: 0 0 16px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 0 16px rgba(136, 136, 136, 0.4);
 }
 
 .w-submit-btn:active {
@@ -803,8 +807,8 @@ svg[class*="lucide"] {
 }
 
 .w-quick-btn:hover {
-  background: rgba(255, 140, 0, 0.08);
-  border-color: rgba(255, 140, 0, 0.3);
+  background: rgba(136, 136, 136, 0.08);
+  border-color: rgba(136, 136, 136, 0.3);
   color: var(--accent-primary);
 }
 
@@ -834,7 +838,7 @@ svg[class*="lucide"] {
   font-weight: 700;
 }
 
-/* 거래 내역 헤더 */
+/* 거래 ?�역 ?�더 */
 .w-history-header {
   display: flex;
   align-items: center;
@@ -908,7 +912,7 @@ svg[class*="lucide"] {
 }
 
 .w-tx-icon.minus {
-  background: rgba(255, 107, 107, 0.1);
+  background: rgba(102, 102, 102, 0.1);
   color: var(--neon-pink);
 }
 
@@ -937,7 +941,7 @@ svg[class*="lucide"] {
   color: var(--accent-danger);
 }
 
-/* ===== Settings 페이지 ===== */
+/* ===== Settings ?�이지 ===== */
 .s-header {
   margin-bottom: 4px;
 }
@@ -993,7 +997,7 @@ svg[class*="lucide"] {
   color: #777;
 }
 
-/* 상태 뱃지 */
+/* ?�태 뱃�? */
 .s-badge {
   padding: 3px 10px;
   border-radius: 4px;
@@ -1004,7 +1008,7 @@ svg[class*="lucide"] {
 }
 
 .s-badge.guest {
-  background: rgba(255, 107, 107, 0.1);
+  background: rgba(102, 102, 102, 0.1);
   color: var(--neon-pink);
   border: 1px solid rgba(255, 0, 102, 0.2);
 }
@@ -1015,7 +1019,7 @@ svg[class*="lucide"] {
   border: 1px solid rgba(0, 255, 153, 0.2);
 }
 
-/* MetaMask 연결 버튼 */
+/* MetaMask ?�결 버튼 */
 .s-desc {
   font-size: 12px;
   color: #555;
@@ -1042,7 +1046,7 @@ svg[class*="lucide"] {
   box-shadow: 0 0 16px rgba(255, 165, 0, 0.15);
 }
 
-/* 토글 스위치 */
+/* ?��? ?�위�?*/
 .s-toggle {
   position: relative;
   display: inline-block;
@@ -1086,14 +1090,14 @@ svg[class*="lucide"] {
   background: var(--neon-green);
 }
 
-/* 액션 버튼 그룹 */
+/* ?�션 버튼 그룹 */
 .s-actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-/* ===== Marketplace 페이지 ===== */
+/* ===== Marketplace ?�이지 ===== */
 .marketplace-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -1190,9 +1194,9 @@ svg[class*="lucide"] {
   color: var(--neon-yellow);
 }
 
-/* ===== 반응형 디자인 — 4단계 Breakpoint ===== */
+/* ===== 반응???�자????4?�계 Breakpoint ===== */
 
-/* 📱 모바일 세로 (max-width: 480px) */
+/* ?�� 모바???�로 (max-width: 480px) */
 @media (max-width: 480px) {
   .masonry-home {
     padding: 8px;
@@ -1204,7 +1208,7 @@ svg[class*="lucide"] {
     gap: 8px;
   }
 
-  /* 모바일: 모든 카드 동일 크기 (1×1) */
+  /* 모바?? 모든 카드 ?�일 ?�기 (1×1) */
   .masonry-large,
   .masonry-medium,
   .masonry-small {
@@ -1212,7 +1216,7 @@ svg[class*="lucide"] {
     grid-row: span 1;
   }
 
-  /* 카드 내부 폰트/패딩 축소 */
+  /* 카드 ?��? ?�트/?�딩 축소 */
   .card-badge {
     font-size: 9px;
     padding: 1px 5px;
@@ -1282,7 +1286,7 @@ svg[class*="lucide"] {
     font-size: 11px;
   }
 
-  /* Wallet 모바일 */
+  /* Wallet 모바??*/
   .wallet-balance-card {
     padding: 20px 16px;
   }
@@ -1318,7 +1322,7 @@ svg[class*="lucide"] {
     font-size: 14px;
   }
 
-  /* 거래 내역 모바일 */
+  /* 거래 ?�역 모바??*/
   .tx-item {
     flex-direction: column;
     align-items: flex-start;
@@ -1327,7 +1331,7 @@ svg[class*="lucide"] {
     font-size: 12px;
   }
 
-  /* Marketplace 모바일 */
+  /* Marketplace 모바??*/
   .marketplace-header h2 {
     font-size: 18px;
   }
@@ -1370,7 +1374,7 @@ svg[class*="lucide"] {
   }
 }
 
-/* 📱 모바일 가로 / 작은 태블릿 (481px ~ 768px) */
+/* ?�� 모바??가�?/ ?��? ?�블�?(481px ~ 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .masonry-home {
     padding: 12px;
@@ -1396,7 +1400,7 @@ svg[class*="lucide"] {
     font-size: 12px;
   }
 
-  /* Wallet 태블릿 */
+  /* Wallet ?�블�?*/
   .wallet-balance-amount {
     font-size: 32px;
   }
@@ -1410,7 +1414,7 @@ svg[class*="lucide"] {
     padding: 12px 22px;
   }
 
-  /* Marketplace 태블릿 */
+  /* Marketplace ?�블�?*/
   .marketplace-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
@@ -1421,7 +1425,7 @@ svg[class*="lucide"] {
   }
 }
 
-/* 🖥️ 태블릿 / 작은 데스크톱 (769px ~ 1200px) */
+/* ?���??�블�?/ ?��? ?�스?�톱 (769px ~ 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
   .masonry-grid {
     grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
@@ -1434,7 +1438,7 @@ svg[class*="lucide"] {
   }
 }
 
-/* 🖥️ 와이드 데스크톱 (1201px+) — 기본값 유지 */
+/* ?���??�?�드 ?�스?�톱 (1201px+) ??기본�??��? */
 @media (min-width: 1201px) {
   .masonry-grid {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -1442,7 +1446,7 @@ svg[class*="lucide"] {
   }
 }
 
-/* ===== 터치 디바이스: 호버 비활성화 + 탭 영역 확대 ===== */
+/* ===== ?�치 ?�바?�스: ?�버 비활?�화 + ???�역 ?��? ===== */
 @media (hover: none) {
   .masonry-card:hover {
     transform: none;
@@ -1452,7 +1456,7 @@ svg[class*="lucide"] {
     transform: none;
   }
 
-  /* 터치 탭 시 살짝 축소 효과 */
+  /* ?�치 ?????�짝 축소 ?�과 */
   .masonry-card:active {
     transform: scale(0.97);
   }

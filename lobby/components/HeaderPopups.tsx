@@ -133,11 +133,11 @@ export const NotificationsPopup: React.FC<{ onClose: () => void }> = ({ onClose 
                         onClick={() => alert(`📢 ${notice.title}\n\n${notice.summary}`)}
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 bg-[#FF8C0015] rounded-lg flex items-center justify-center flex-shrink-0 text-lg">
+                            <div className="w-8 h-8 bg-[#88888815] rounded-lg flex items-center justify-center flex-shrink-0 text-lg">
                                 {notice.icon}
                             </div>
                             <div className="flex-1 min-w-0">
-                                <p className="text-white text-sm font-bold leading-tight mb-1 group-hover:text-[#FF8C00] transition-colors">
+                                <p className="text-white text-sm font-bold leading-tight mb-1 group-hover:text-[#888888] transition-colors">
                                     {notice.title}
                                 </p>
                                 <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">

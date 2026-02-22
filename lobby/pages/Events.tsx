@@ -25,11 +25,11 @@ const Events: React.FC = () => {
     return (
         <div className="flex-1 bg-[#05070A] overflow-y-auto p-8 relative">
             {/* 배경 장식 */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-[#FF8C0005] blur-[120px] pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-[#88888805] blur-[120px] pointer-events-none" />
 
             {/* 헤더 */}
             <div className="flex items-center gap-2 mb-8 relative z-10">
-                <CalendarDays className="text-[#FF8C00]" size={24} />
+                <CalendarDays className="text-[#888888]" size={24} />
                 <h1 className="text-2xl font-bold text-white">이벤트</h1>
                 <span className="bg-[#111622] text-[#64748B] text-xs px-2 py-0.5 rounded border border-[#1E2330] ml-2">
                     {eventCards.length}
@@ -41,7 +41,7 @@ const Events: React.FC = () => {
                 {eventCards.map((event) => (
                     <div
                         key={event.id}
-                        className="bg-[#111622] border border-[#1E2330] rounded-2xl overflow-hidden hover:border-[#FF8C0044] transition-all group cursor-pointer"
+                        className="bg-[#111622] border border-[#1E2330] rounded-2xl overflow-hidden hover:border-[#88888844] transition-all group cursor-pointer"
                         onClick={() => alert(`🎉 "${event.title}" 이벤트 상세 페이지는 준비 중입니다.`)}
                     >
                         {/* 이벤트 썸네일 + 오버레이 */}
@@ -60,7 +60,7 @@ const Events: React.FC = () => {
 
                             {/* 핀 표시 */}
                             {event.pinned && (
-                                <div className="absolute top-4 left-4 flex items-center gap-1 bg-[#FF8C00]/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">
+                                <div className="absolute top-4 left-4 flex items-center gap-1 bg-[#888888]/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">
                                     <Sparkles size={10} />
                                     PINNED
                                 </div>
@@ -69,7 +69,7 @@ const Events: React.FC = () => {
 
                         {/* 이벤트 정보 */}
                         <div className="p-6">
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FF8C00] transition-colors">
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#888888] transition-colors">
                                 {event.title}
                             </h3>
                             <p className="text-[#94A3B8] text-sm mb-4">{event.description}</p>
@@ -84,7 +84,7 @@ const Events: React.FC = () => {
                                 )}
 
                                 {/* 자세히 보기 */}
-                                <div className="flex items-center gap-1 text-[#64748B] text-sm font-medium group-hover:text-[#FF8C00] transition-colors ml-auto">
+                                <div className="flex items-center gap-1 text-[#64748B] text-sm font-medium group-hover:text-[#888888] transition-colors ml-auto">
                                     자세히 보기
                                     <ChevronRight size={14} />
                                 </div>

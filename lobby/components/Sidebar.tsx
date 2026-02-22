@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                 flex items-center h-12 px-6 my-0.5 text-white/70 
                 transition-colors relative group
                 ${isActive
-                  ? 'text-white font-bold before:absolute before:left-0 before:top-3 before:bottom-3 before:w-1 before:bg-[#FF8C00]'
+                  ? 'text-white font-bold before:absolute before:left-0 before:top-3 before:bottom-3 before:w-1 before:bg-[#888888]'
                   : 'hover:bg-white/10 hover:text-white'
                 }
               `}

@@ -3,27 +3,16 @@ import GameContainer from '../shared/GameContainer';
 
 const BilliardsGame: React.FC = () => {
     return (
-        <GameContainer title="당구">
-            <div style={{
-                width: '100%',
-                maxWidth: '800px',
-                aspectRatio: '16/9',
-                backgroundColor: '#1a472a',
-                borderRadius: '16px',
-                border: '8px solid #8b4513',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(0, 0, 0, 0.3)',
-            }}>
-                <div style={{ textAlign: 'center', color: '#fff' }}>
-                    <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎱</div>
-                    <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>당구 게임</h2>
-                    <p style={{ color: '#aaa', fontSize: '0.9rem' }}>
-                        게임 로직을 여기에 구현하세요
+        <GameContainer title="?�구">
+            <div className="w-full max-w-[800px] aspect-video bg-[#1a472a] rounded-2xl border-8 border-[#8b4513] flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.5),inset_0_0_60px_rgba(0,0,0,0.3)]">
+                <div className="text-center text-white">
+                    <div className="text-6xl mb-4">?��</div>
+                    <h2 className="text-2xl mb-2">?�구 게임</h2>
+                    <p className="text-[#aaa] text-sm">
+                        게임 로직???�기??구현?�세??
                     </p>
-                    <p style={{ color: '#666', fontSize: '0.8rem', marginTop: '1rem' }}>
-                        이 파일을 자유롭게 수정해도 로비에는 영향이 없습니다!
+                    <p className="text-[#666] text-xs mt-4">
+                        ???�일???�유�?�� ?�정?�도 로비?�는 ?�향???�습?�다!
                     </p>
                 </div>
             </div>

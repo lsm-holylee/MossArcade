@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from '../../lobby/components/Sidebar'; // Layout이 아닌 Sidebar 직접 사용 (Default Import)
+import Sidebar from '../../lobby/components/Sidebar'; // Layout???�닌 Sidebar 직접 ?�용 (Default Import)
 import BettingPanel from '../components/BettingPanel';
 import GameContainer from '../components/GameContainer';
 import GameChat from '../components/GameChat';
@@ -17,7 +17,7 @@ const GameRoom: React.FC = () => {
     const [result, setResult] = useState<'win' | 'lose' | 'draw' | null>(null);
     const [betAmount, setBetAmount] = useState(100);
 
-    // ... (기존 useEffect 로직 유지) ...
+    // ... (기존 useEffect 로직 ?��?) ...
     // Handlers
     const handleReady = () => {
         setMyStatus('ready');
@@ -67,7 +67,7 @@ const GameRoom: React.FC = () => {
     };
 
     const handleExit = () => {
-        if (window.confirm('정말 게임에서 나가시겠습니까? 배팅 금액을 잃을 수 있습니다.')) {
+        if (window.confirm('?�말 게임?�서 ?��??�겠?�니�? 배팅 금액???�을 ???�습?�다.')) {
             navigate('/');
         }
     };

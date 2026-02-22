@@ -48,7 +48,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ title, children }) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
                     }}
                 >
-                    ← 로비로 돌아가기
+                    ??로비�??�아가�?
                 </button>
                 <h1 style={{
                     fontSize: '1.5rem',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-// 로비 영역
+// 로비 ?�역
 import Layout from './lobby/components/Layout';
 import Home from './lobby/pages/Home';
 import Wallet from './lobby/pages/Wallet';
@@ -14,7 +14,7 @@ import Tournaments from './lobby/pages/Tournaments';
 import SettingsPage from './lobby/pages/Settings';
 import HelpPage from './lobby/pages/Help';
 
-// 게임 영역
+// 게임 ?�역
 import GameRoom from './game/pages/GameRoom';
 
 import { EconomyProvider } from './lobby/context/EconomyContext';
@@ -25,14 +25,14 @@ const App: React.FC = () => {
       <BrowserRouter>
 
         <Routes>
-          {/* 로비 라우트 */}
+          {/* 로비 ?�우??*/}
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="home" element={<Home />} />
             <Route path="wallet" element={<Wallet />} />
-            {/* <Route path="marketplace" element={<Marketplace />} /> */}
+            <Route path="marketplace" element={<Marketplace />} />
             <Route path="events" element={<Events />} />
-            {/* <Route path="match-history" element={<MatchHistory />} /> */}
+            <Route path="match-history" element={<MatchHistory />} />
             <Route path="leaderboard" element={<Leaderboard />} />
             <Route path="friends" element={<Friends />} />
             <Route path="tournaments" element={<Tournaments />} />
@@ -40,7 +40,7 @@ const App: React.FC = () => {
             <Route path="help" element={<HelpPage />} />
           </Route>
 
-          {/* 게임 라우트 - 로비 레이아웃 없이 독립 실행 */}
+          {/* 게임 ?�우??- 로비 ?�이?�웃 ?�이 ?�립 ?�행 */}
           <Route path="/game/:gameId" element={<GameRoom />} />
         </Routes>
       </BrowserRouter>

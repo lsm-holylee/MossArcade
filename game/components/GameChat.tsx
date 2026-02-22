@@ -14,8 +14,8 @@ interface GameChatProps {
 
 const GameChat: React.FC<GameChatProps> = ({ onExit }) => {
     const [messages, setMessages] = useState<Message[]>([
-        { id: '1', sender: 'System', text: '매칭이 성사되었습니다!', type: 'system' },
-        { id: '2', sender: 'System', text: '매너있는 채팅 부탁드립니다.', type: 'system' },
+        { id: '1', sender: 'System', text: '매칭???�사?�었?�니??', type: 'system' },
+        { id: '2', sender: 'System', text: '매너?�는 채팅 부?�드립니??', type: 'system' },
     ]);
     const [input, setInput] = useState('');
     const chatEndRef = useRef<HTMLDivElement>(null);
@@ -82,12 +82,12 @@ const GameChat: React.FC<GameChatProps> = ({ onExit }) => {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder="메시지를 입력하세요..."
-                        className="w-full bg-[#08090c] text-white text-xs rounded pl-4 pr-10 py-3 border border-white/10 focus:border-[#00ff99]/50 focus:outline-none transition-colors placeholder-gray-600"
+                        placeholder="메시지�??�력?�세??.."
+                        className="w-full bg-[#08090c] text-white text-xs rounded pl-4 pr-10 py-3 border border-white/10 focus:border-[#999999]/50 focus:outline-none transition-colors placeholder-gray-600"
                     />
                     <button
                         type="submit"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#00ff99] p-1.5 transition-colors"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#999999] p-1.5 transition-colors"
                     >
                         <Send size={14} />
                     </button>

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// 게임 설정
+// 게임 ?�정
 const CONFIG = {
     playerCount: 8,
     entryFee: 10,
-    colors: ['#00ff99', '#ff0066', '#00ccff', '#ffff00', '#ff9900', '#cc00ff', '#ffffff', '#00ff00'],
+    colors: ['#999999', '#7a7a7a', '#00ccff', '#bbbbbb', '#ff9900', '#cc00ff', '#ffffff', '#00ff00'],
     arenaPadding: 60,
     gravity: 0.1,
     friction: 0.98,
@@ -132,13 +132,13 @@ const NeonGame: React.FC = () => {
     }, [createParticles]);
 
     const drawPlayer = useCallback((ctx: CanvasRenderingContext2D, p: Player) => {
-        // 그림자
+        // 그림??
         ctx.beginPath();
         ctx.ellipse(p.x, p.y + 12, p.radius * 0.8, p.radius * 0.3, 0, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(0,0,0,0.5)';
         ctx.fill();
 
-        // 플레이어 원
+        // ?�레?�어 ??
         ctx.lineWidth = 4;
         ctx.strokeStyle = '#fff';
         ctx.fillStyle = p.color;
@@ -152,7 +152,7 @@ const NeonGame: React.FC = () => {
         ctx.stroke();
         ctx.shadowBlur = 0;
 
-        // 이름 라벨
+        // ?�름 ?�벨
         ctx.fillStyle = '#fff';
         ctx.font = '700 11px Orbitron, sans-serif';
         ctx.textAlign = 'center';
@@ -172,7 +172,7 @@ const NeonGame: React.FC = () => {
 
         setPrizePool(CONFIG.playerCount * CONFIG.entryFee);
 
-        // 플레이어 생성
+        // ?�레?�어 ?�성
         for (let i = 0; i < CONFIG.playerCount; i++) {
             const angle = (Math.PI * 2 / CONFIG.playerCount) * i;
             const r = game.arenaRadius * 0.7;
@@ -242,7 +242,7 @@ const NeonGame: React.FC = () => {
             ctx.fillStyle = '#050505';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 앰비언트 파티클
+            // ?�비?�트 ?�티??
             ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
             game.ambientDots.forEach(d => {
                 d.y -= d.v;
@@ -257,7 +257,7 @@ const NeonGame: React.FC = () => {
                     game.arenaRadius -= 0.08;
                 }
 
-                // 아레나 링
+                // ?�레??�?
                 ctx.beginPath();
                 ctx.arc(game.centerX, game.centerY, game.arenaRadius, 0, Math.PI * 2);
                 ctx.strokeStyle = 'rgba(0, 255, 153, 0.3)';
@@ -265,7 +265,7 @@ const NeonGame: React.FC = () => {
                 ctx.stroke();
 
                 ctx.shadowBlur = 15;
-                ctx.shadowColor = '#00ff99';
+                ctx.shadowColor = '#999999';
                 ctx.stroke();
                 ctx.shadowBlur = 0;
 
@@ -326,7 +326,7 @@ const NeonGame: React.FC = () => {
                     setGameState('ENDED');
                 }
 
-                // 파티클 업데이트
+                // ?�티???�데?�트
                 game.particles = game.particles.filter(p => p.alpha > 0);
                 game.particles.forEach(p => {
                     p.x += p.vx;
@@ -382,7 +382,7 @@ const NeonGame: React.FC = () => {
                     fontSize: '0.75rem',
                 }}
             >
-                ← 로비
+                ??로비
             </button>
             */}
 
@@ -440,7 +440,7 @@ const NeonGame: React.FC = () => {
                 }}>
                     <div style={{
                         background: '#111',
-                        border: '2px solid #00ff99',
+                        border: '2px solid #999999',
                         boxShadow: '0 0 20px rgba(0, 255, 153, 0.2)',
                         padding: '2.5rem',
                         borderRadius: '1.5rem',
@@ -452,12 +452,12 @@ const NeonGame: React.FC = () => {
                             fontSize: '2rem',
                             fontWeight: 900,
                             fontFamily: 'Orbitron, sans-serif',
-                            color: '#00ff99',
-                            textShadow: '0 0 10px #00ff99, 0 0 20px rgba(0, 255, 153, 0.5)',
+                            color: '#999999',
+                            textShadow: '0 0 10px #999999, 0 0 20px rgba(0, 255, 153, 0.5)',
                             marginBottom: '0.5rem',
                         }}>MOSS DEATHMATCH</h1>
                         <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '2rem', lineHeight: 1.6 }}>
-                            상대방을 밀쳐내고 최후의 1인이 되어<br />베팅된 코인을 획득하세요.
+                            ?��?방을 밀쳐내�?최후??1?�이 ?�어<br />베팅??코인???�득?�세??
                         </p>
 
                         <div style={{
@@ -474,7 +474,7 @@ const NeonGame: React.FC = () => {
                         <button
                             onClick={startGame}
                             style={{
-                                background: '#00ff99',
+                                background: '#999999',
                                 color: '#000',
                                 padding: '1rem 2rem',
                                 borderRadius: '0.75rem',
@@ -492,7 +492,7 @@ const NeonGame: React.FC = () => {
                         </button>
 
                         <p style={{ color: '#4b5563', fontSize: '0.75rem', marginTop: '1rem' }}>
-                            WASD: 이동 | Space: 대시
+                            WASD: ?�동 | Space: ?�??
                         </p>
                     </div>
                 </div>
@@ -512,7 +512,7 @@ const NeonGame: React.FC = () => {
                 }}>
                     <div style={{
                         background: '#111',
-                        border: '2px solid #00ff99',
+                        border: '2px solid #999999',
                         boxShadow: '0 0 20px rgba(0, 255, 153, 0.2)',
                         padding: '2.5rem',
                         borderRadius: '1.5rem',
@@ -524,7 +524,7 @@ const NeonGame: React.FC = () => {
                             fontSize: '2.5rem',
                             fontWeight: 900,
                             fontFamily: 'Orbitron, sans-serif',
-                            color: isUserWinner ? '#00ff99' : '#ff0066',
+                            color: isUserWinner ? '#999999' : '#7a7a7a',
                             marginBottom: '0.5rem',
                         }}>
                             {isUserWinner ? 'VICTORY' : 'GAME OVER'}
@@ -540,7 +540,7 @@ const NeonGame: React.FC = () => {
                         <button
                             onClick={resetToLobby}
                             style={{
-                                background: '#00ff99',
+                                background: '#999999',
                                 color: '#000',
                                 padding: '1rem 2rem',
                                 borderRadius: '0.75rem',

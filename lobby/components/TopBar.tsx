@@ -52,7 +52,7 @@ const TopBar: React.FC<TopBarProps> = ({ onToggleSidebar }) => {
                         onClick={() => navigate('/home')}
                         title="홈으로 이동"
                     >
-                        <Ghost className="text-[#FF8C00] w-6 h-6" />
+                        <Ghost className="text-[#888888] w-6 h-6" />
                         <span className="font-bold text-lg tracking-tight text-white hidden sm:block">
                             Moss Arcade
                         </span>
@@ -71,7 +71,7 @@ const TopBar: React.FC<TopBarProps> = ({ onToggleSidebar }) => {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyDown={handleSearch}
-                            className="w-full bg-[#2a2a2c] text-white border border-white/5 rounded-lg py-2 pl-10 pr-4 text-sm focus:border-[#FF8C00]/50 focus:outline-none placeholder-gray-500 transition-colors"
+                            className="w-full bg-[#2a2a2c] text-white border border-white/5 rounded-lg py-2 pl-10 pr-4 text-sm focus:border-[#888888]/50 focus:outline-none placeholder-gray-500 transition-colors"
                         />
                     </div>
                 </div>
